@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidompul Multi Nomor</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(135deg, #2196F3, #004aad);
+            color: white;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            max-width: 500px;
+            margin-top: 50px;
+        }
+        .card {
+            border-radius: 12px;
+            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+            background: white;
+            color: #333;
+        }
+        .footer {
+            text-align: center;
+            padding: 15px;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #f1f1f1;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 16px;
+        }
+        textarea {
+            height: 120px;
+            resize: vertical;
+        }
+        .logo {
+            display: block;
+            margin: 0 auto 15px;
+            max-width: 120px;
+            transition: transform 0.3s ease-in-out;
+        }
+        .logo:hover {
+            transform: scale(1.1);
+        }
+        .btn-custom {
+            background: linear-gradient(90deg, #0056b3, #007bff);
+            border: none;
+            transition: all 0.3s ease;
+            color: white;
+            font-weight: bold;
+        }
+        .btn-custom:hover {
+            background: linear-gradient(90deg, #007bff, #0056b3);
+            box-shadow: 0px 4px 10px rgba(0, 120, 255, 0.6);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container text-center">
+        <img src="https://tools.kobostore.my.id/uploads/rzstore/9601896521.png" alt="Logo Sidompul" class="logo">
+        <h2 class="fw-bold">Sidompul Multi Nomor</h2>
+
+        <div class="card p-4 mt-3">
+            <h4 class="text-center mb-3">Cek Paket Kuota</h4>
+            <form id="cekKuotaForm">
+                <div class="mb-3">
+                    <label for="nomor" class="form-label">Masukkan Nomor HP</label>
+                    <textarea id="nomor" name="nomor" class="form-control" placeholder="Contoh: 6287768005790, 087821979833" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-custom w-100">Cek Paket</button>
+            </form>
+
+            <div class="alert mt-3" id="responseMessage" style="display: none;">
+                <pre id="resultText"></pre>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        © Copyright Sidompul Rz Store 2025
+    </div>
+
+    <script>
+        document.getElementById("cekKuotaForm").addEventListener("submit", async function(event) {
+            event.preventDefault();
+            
+            let inputNomor = document.getElementById("nomor").value.trim();
+            let responseMessage = document.getElementById("responseMessage");
+            let resultText = document.getElementById("resultText");
+
+            let nomorList = [...new Set(inputNomor.split(/[\s,]+/).map(n => n.trim()).filter(n => n))];
+
+            if (nomorList.length === 0) {
+                responseMessage.style.display = "block";
+                responseMessage.className = "alert alert-danger";
+                resultText.textContent = "❌ Masukkan setidaknya satu nomor HP.";
+                return;
+            }
+
+            responseMessage.style.display = "block";
+            responseMessage.className = "alert alert-info";
+            resultText.textContent = "🔄 Memproses permintaan...";
+
+            let hasilAkhir = [];
+
+            for (let nomor of nomorList) {
+                let nomorHP = nomor.replace(/\D/g, "");
+
+                if (/^62\d{9,12}$/.test(nomorHP)) {
+                    nomorHP = "0" + nomorHP.substring(2);
+                }
+
+                if (!/^08\d{8,11}$/.test(nomorHP)) {
+                    hasilAkhir.push(`❌ ${nomor}: Format tidak valid.\n---`);
+                    continue;
+                }
+
+                let apiUrl = `https://apigw.kmsp-store.com/sidompul/v3/cek_kuota?msisdn=${nomorHP}&isJSON=true`;
+
+                try {
+                    let response = await fetch(apiUrl, {
+                        headers: {
+                            "Authorization": "Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw",
+                            "X-API-Key": "4352ff7d-f4e6-48c6-89dd-21c811621b1c",
+                            "X-App-Version": "3.0.0"
+                        }
+                    });
+
+                    if (!response.ok) {
+                        throw new Error("Gagal menghubungi server.");
+                    }
+
+                    let data = await response.json();
+
+                    if (data.statusCode !== 200) {
+                        hasilAkhir.push(`❌ ${nomor}: ${data.message || "Gagal memproses."}\n---`);
+                    } else {
+                        let hasilKuota = data.data.hasil
+                            .replace(/<br>/g, "\n")
+                            .replace(/📲.*\n?/u, "")
+                            .replace(/📃.*\n?/u, "")
+                            .trim();
+
+                        hasilAkhir.push(`✅ ${nomor}:\n${hasilKuota}\n---`);
+                    }
+                } catch (error) {
+                    hasilAkhir.push(`❌ ${nomor}: ${error.message}\n---`);
+                }
+            }
+
+            responseMessage.className = hasilAkhir.some(h => h.startsWith("❌")) ? "alert alert-danger" : "alert alert-success";
+            resultText.textContent = hasilAkhir.join("\n");
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
