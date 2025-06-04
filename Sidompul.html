@@ -1,164 +1,160 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sidompul Multi Nomor</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <style>
-        body {
-            background: linear-gradient(135deg, #2196F3, #004aad);
-            color: white;
-            font-family: 'Arial', sans-serif;
-        }
-        .container {
-            max-width: 500px;
-            margin-top: 50px;
-        }
-        .card {
-            border-radius: 12px;
-            box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-            background: white;
-            color: #333;
-        }
-        .footer {
-            text-align: center;
-            padding: 15px;
-            margin-top: 20px;
-            font-size: 14px;
-            color: #f1f1f1;
-        }
-        pre {
-            white-space: pre-wrap;
-            word-wrap: break-word;
-            font-size: 16px;
-        }
-        textarea {
-            height: 120px;
-            resize: vertical;
-        }
-        .logo {
-            display: block;
-            margin: 0 auto 15px;
-            max-width: 120px;
-            transition: transform 0.3s ease-in-out;
-        }
-        .logo:hover {
-            transform: scale(1.1);
-        }
-        .btn-custom {
-            background: linear-gradient(90deg, #0056b3, #007bff);
-            border: none;
-            transition: all 0.3s ease;
-            color: white;
-            font-weight: bold;
-        }
-        .btn-custom:hover {
-            background: linear-gradient(90deg, #007bff, #0056b3);
-            box-shadow: 0px 4px 10px rgba(0, 120, 255, 0.6);
-        }
-    </style>
+<title>Sidompul Cek Kuota XL & AXIS - RZ-STORE</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="format-detection" content="telephone=no" />
+<meta name="robots" content="noindex, nofollow">
+<meta name="author" content="EEEE">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://my.kmsp-store.com/css/jquery.ccpicker.css">
+<link rel="stylesheet" href="https://my.kmsp-store.com/assets/css/spinner.css">
+<link href="https://my.kmsp-store.com/assets/build/toastr.css" rel="stylesheet" type="text/css" />
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-144237878-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-144237878-1');
+</script>
 <body>
+<style>
+@media only screen and (min-width: 200px) {
+.atur1{width: 90%;}
+}
 
-    <div class="container text-center">
-        <img src="https://tools.kobostore.my.id/uploads/rzstore/9601896521.png" alt="Logo Sidompul" class="logo">
-        <h2 class="fw-bold">Sidompul Multi Nomor</h2>
+@media only screen and (min-width: 600px) {
+.atur1{width: 80%;}
+}
 
-        <div class="card p-4 mt-3">
-            <h4 class="text-center mb-3">Cek Paket Kuota</h4>
-            <form id="cekKuotaForm">
-                <div class="mb-3">
-                    <label for="nomor" class="form-label">Masukkan Nomor HP</label>
-                    <textarea id="nomor" name="nomor" class="form-control" placeholder="Contoh: 6287768005790, 087821979833" required></textarea>
-                </div>
-                <button type="submit" class="btn btn-custom w-100">Cek Paket</button>
-            </form>
+@media only screen and (min-width: 600px) {
+.atur1{width: 80%;}
+}
 
-            <div class="alert mt-3" id="responseMessage" style="display: none;">
-                <pre id="resultText"></pre>
-            </div>
-        </div>
-    </div>
+@media only screen and (min-width: 1000px) {
+.atur1{width: 50%;}
+}
 
-    <div class="footer">
-        © Copyright Sidompul Rz Store 2025
-    </div>
+@media only screen and (min-width: 1300px) {
+.atur1{width: 30%;}
+}
+</style>
+<div id="cover-spin"></div>
+<div class="container atur1" style="margin-top: 150px; margin-bottom: 150px;">
+<center><h3 style="font-weight: bold;">SIDOMPUL CEK KUOTA XL & AXIS</h3><b>By RZ-STORE<br>v4.0.0</b></center>
+<br>
+<div class="alert alert-success" style="text-align: justify;">
+  <strong><i class="fa fa-bullhorn" aria-hidden="true"></i> INFO</strong><br>Mohon jangan melakukan SPAM. Gunakan fitur ini dengan bijak!</a>
+</div>
+<div id="formnya">
+  <div class="form-group">
+    <label for="msisdn">MSISDN/Nomor XL/AXIS Kamu:</label>
+    <input type="number" class="form-control" id="msisdn" placeholder="Ex: 08xxx/628xxx" value="" maxlength="16" required>
+  </div>
+  <button type="button" id="submitCekKuota" class="btn btn-primary"><i class="fa fa-sign-in" aria-hidden="true"></i> Cek</button>
+  <div id="hasilnya" style="text-align: justify;"></div>
+</div><br>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('#submitCekKuota').click(function(){
+    $.ajax({
+        type:'GET',
+        crossDomain: true,
+        url: "https://apigw.kmsp-store.com/sidompul/v4/cek_kuota?msisdn=" + $('#msisdn').val() + "&isJSON=true",
+        data:{},
+        dataType:'JSON',
+        'contentType': 'application/x-www-form-urlencoded',
+        error:function(xhr, ajaxOptions, thrownError){
+        //error
+        $('#cover-spin').hide();
+        toastr.error('Terjadi kesalahan. Silakan coba lagi!');
+        },
+        cache:false,
+        beforeSend:function(request){
+          request.setRequestHeader('Authorization', 'Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw');
+          request.setRequestHeader('X-API-Key', '60ef29aa-a648-4668-90ae-20951ef90c55');
+          request.setRequestHeader('X-App-Version', '4.0.0');
+        //sebelum kirim
+        $('#cover-spin').show(0);
+        },
+        success:function(s){
+          //console.log(s);
 
-    <script>
-        document.getElementById("cekKuotaForm").addEventListener("submit", async function(event) {
-            event.preventDefault();
-            
-            let inputNomor = document.getElementById("nomor").value.trim();
-            let responseMessage = document.getElementById("responseMessage");
-            let resultText = document.getElementById("resultText");
+          $('#cover-spin').hide();
 
-            let nomorList = [...new Set(inputNomor.split(/[\s,]+/).map(n => n.trim()).filter(n => n))];
+          if(s['status'] == false)
+          {
+            toastr.error(s['message']);
+            $('#hasilnya').html('');
+            $('#hasilnya').html("<br>" + '<font style="color: red;"><b>' + s['data']['keteranganError'] + '</b></font>');
+          }
 
-            if (nomorList.length === 0) {
-                responseMessage.style.display = "block";
-                responseMessage.className = "alert alert-danger";
-                resultText.textContent = "❌ Masukkan setidaknya satu nomor HP.";
-                return;
-            }
+          if(s['status'] == true)
+          {
+            toastr.success(s['message']);
+            $('#hasilnya').html('');
+            $('#hasilnya').html("<br>" + s['data']['hasil']);
+          }
+        }
+      });
+  });
+});
 
-            responseMessage.style.display = "block";
-            responseMessage.className = "alert alert-info";
-            resultText.textContent = "🔄 Memproses permintaan...";
+$(document).on('keypress',function(e) {
+  if(e.which == 13 && $("#msisdn").is(":focus"))
+  {
+    $.ajax({
+        type:'GET',
+        crossDomain: true,
+        url: "https://apigw.kmsp-store.com/sidompul/v4/cek_kuota?msisdn=" + $('#msisdn').val() + "&isJSON=true",
+        data:{},
+        dataType:'JSON',
+        'contentType': 'application/x-www-form-urlencoded',
+        error:function(xhr, ajaxOptions, thrownError){
+        //error
+        $('#cover-spin').hide();
+        toastr.error('Terjadi kesalahan. Silakan coba lagi!');
+        },
+        cache:false,
+        beforeSend:function(request){
+          request.setRequestHeader('Authorization', 'Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw');
+          request.setRequestHeader('X-API-Key', '60ef29aa-a648-4668-90ae-20951ef90c55');
+          request.setRequestHeader('X-App-Version', '4.0.0');
+        //sebelum kirim
+        $('#cover-spin').show(0);
+        },
+        success:function(s){
+          //console.log(s);
 
-            let hasilAkhir = [];
+          $('#cover-spin').hide();
 
-            for (let nomor of nomorList) {
-                let nomorHP = nomor.replace(/\D/g, "");
+          if(s['status'] == false)
+          {
+            toastr.error(s['message']);
+            $('#hasilnya').html('');
+            $('#hasilnya').html("<br>" + '<font style="color: red;"><b>' + s['data']['keteranganError'] + '</b></font>');
+          }
 
-                if (/^62\d{9,12}$/.test(nomorHP)) {
-                    nomorHP = "0" + nomorHP.substring(2);
-                }
-
-                if (!/^08\d{8,11}$/.test(nomorHP)) {
-                    hasilAkhir.push(`❌ ${nomor}: Format tidak valid.\n---`);
-                    continue;
-                }
-
-                let apiUrl = `https://apigw.kmsp-store.com/sidompul/v3/cek_kuota?msisdn=${nomorHP}&isJSON=true`;
-
-                try {
-                    let response = await fetch(apiUrl, {
-                        headers: {
-                            "Authorization": "Basic c2lkb21wdWxhcGk6YXBpZ3drbXNw",
-                            "X-API-Key": "4352ff7d-f4e6-48c6-89dd-21c811621b1c",
-                            "X-App-Version": "3.0.0"
-                        }
-                    });
-
-                    if (!response.ok) {
-                        throw new Error("Gagal menghubungi server.");
-                    }
-
-                    let data = await response.json();
-
-                    if (data.statusCode !== 200) {
-                        hasilAkhir.push(`❌ ${nomor}: ${data.message || "Gagal memproses."}\n---`);
-                    } else {
-                        let hasilKuota = data.data.hasil
-                            .replace(/<br>/g, "\n")
-                            .replace(/📲.*\n?/u, "")
-                            .replace(/📃.*\n?/u, "")
-                            .trim();
-
-                        hasilAkhir.push(`✅ ${nomor}:\n${hasilKuota}\n---`);
-                    }
-                } catch (error) {
-                    hasilAkhir.push(`❌ ${nomor}: ${error.message}\n---`);
-                }
-            }
-
-            responseMessage.className = hasilAkhir.some(h => h.startsWith("❌")) ? "alert alert-danger" : "alert alert-success";
-            resultText.textContent = hasilAkhir.join("\n");
-        });
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
+          if(s['status'] == true)
+          {
+            toastr.success(s['message']);
+            $('#hasilnya').html('');
+            $('#hasilnya').html("<br>" + s['data']['hasil']);
+          }
+        }
+      });
+  }
+});
+</script>
+<script src="https://my.kmsp-store.com/assets/toastr.js"></script>
 </body>
 </html>
